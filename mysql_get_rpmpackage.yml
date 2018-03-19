@@ -1,0 +1,14 @@
+---
+- name: install mysql
+  hosts: ansible-mysql
+  become: true
+  become_user: root
+  gather_facts: true
+  tasks:
+   - name: "Install wget"
+     yum: name=wget state=present
+     
+   - name: Download  the mysql RPM"
+     get_url:
+       url: https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm     
+       dest: /mysql57-community-release-el7-11.noarch.rpm

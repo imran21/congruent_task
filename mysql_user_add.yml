@@ -1,0 +1,15 @@
+---
+- name: install mysql
+  hosts: ansible-mysql
+  become: true
+  become_user: root
+  gather_facts: true
+  tasks:
+
+    - name: add user to mysql
+      mysql_user:
+         login_user: "root"
+         login_password: "imranA1@"
+         name: "testuser"
+         password: "testuser@A1"
+         state: present

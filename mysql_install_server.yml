@@ -1,0 +1,19 @@
+---
+- name: install mysql machine
+  hosts: ansible-mysql
+  become: true
+  become_user: root
+  gather_facts: true
+  tasks:
+    - name: "Register mysql packages"
+      command: rpm -ivh /mysql57-community-release-el7-11.noarch.rpm
+
+    - name: "server installation"
+      yum: name={{ item }} state=present
+      with_items:
+        - mysql-server
+        - MySQL-python.x86_64
+
+    - name: Enable and Start mysql
+      service: name=mysqld state=started enabled=yes
+
